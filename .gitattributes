@@ -1,3 +1,4 @@
 *.sh text=auto eol=lf
+*.yml text=auto eol=lf
 ansible-hosts text=auto eol=lf linguist-language=Ansible
 Vagrantfile linguist-language=Ruby
