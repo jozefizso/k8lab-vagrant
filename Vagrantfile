@@ -66,12 +66,15 @@ Vagrant.configure("2") do |config|
     vb.vmx["numvcpus"] = 2
   end
 
-  config.vm.network "private_network", ip: "192.168.50.10"
+  config.vm.define "k8s-master" do |master|
+    master.vm.network "private_network", ip: "192.168.50.10"
+    master.vm.hostname = "k8s-master"
 
-  config.vm.hostname = "k8s-master"
-  config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "kubernetes-setup/master-playbook.yml"
+    master.vm.provision "ansible_local" do |ansible|
+      ansible.playbook = "kubernetes-setup/master-playbook.yml"
+    end
   end
+
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
