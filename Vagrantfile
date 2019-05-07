@@ -75,6 +75,17 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  (1..2).each do |i|
+    config.vm.define "node-#{i}" do |node|
+      node.vm.network "private_network", ip: "192.168.50.#{i + 10}"
+      node.vm.hostname = "node-#{i}"
+
+      node.vm.provision "ansible_local" do |ansible|
+        ansible.playbook = "kubernetes-setup/node-playbook.yml"
+      end
+    end
+  end
+
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
