@@ -1,0 +1,17 @@
+### Vagrant ###
+# General
+.vagrant/
+
+# Log files (if you are creating logs in debug mode, uncomment this)
+# *.logs
+
+### Vagrant Patch ###
+*.box
+
+# Certificate files for ODK cluster
+*.key
+*.crt
+
+## ansible files
+kubernetes-setup/*.retry
+kubernetes-setup/join-command
